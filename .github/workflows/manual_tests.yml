@@ -28,12 +28,12 @@ jobs:
       - name: Execute Postman Collection
         run: |
           newman run "pet story.postman_collection.json" --folder "New Folder" -r htmlextra --reporter-htmlextra-export "final_report.html" --suppress-exit-code
-
+      
       # Step 5: Archive and publish the generated HTML report as a build artifact
       - name: Save HTML Test Report
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: petstore-html-report
-          path: ./final_report.html
+          path: newman/final_report.html
           retention-days: 5
