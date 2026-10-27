@@ -1,0 +1,39 @@
+name: Manual API Testing Suite
+
+on:
+  workflow_dispatch:
+
+jobs:
+  petstore-tests:
+    name: Run Swagger Petstore Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Clone the repository files into the runner workspace
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # Step 2: Initialize Node.js environment on the hosted runner
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # Step 3: Install Newman core engine and custom HTML reporting plugins globally
+      - name: Install Newman & Dependencies
+        run: |
+          npm install -g newman newman-reporter-htmlextra
+
+      # Step 4: Execute the Postman collection via CLI and export the static dashboard
+      - name: Execute Postman Collection
+        run: |
+          newman run "pet story.postman_collection.json" --folder "New Folder" -r htmlextra --reporter-htmlextra-export "final_report.html"
+
+      # Step 5: Archive and publish the generated HTML report as a build artifact
+      - name: Save HTML Test Report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: petstore-html-report
+          path: final_report.html
+          retention-days: 5
