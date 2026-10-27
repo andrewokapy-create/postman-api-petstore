@@ -18,7 +18,7 @@ This repository contains an automated test suite designed for the public **Swagg
 * **Bash** — Shell scripting for command-line automation.
 
 ## 📁 Collection Structure & Test Coverage
-All test cases are organized inside the `New Folder` directory, containing the following validation types for each respective endpoint:
+All test cases are organized inside the `Petstore-E2E-Tests` directory, containing the following validation types for each respective endpoint:
 
 1. **`GET : Find Pet Status (200)`** — Validates the pet filtration system. Asserts HTTP 200 OK status and verifies that server response time falls within performance limits (< 300ms).
 2. **`GET : Find Pet Status (400)`** — A negative test case designed to evaluate the server's behavior when handling unexpected or missing query parameters.
