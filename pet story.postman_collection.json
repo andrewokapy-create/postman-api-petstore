@@ -8,7 +8,7 @@
   },
   "item": [
     {
-      "name": "New Folder",
+      "name": "Petstore-E2E-Tests",
       "item": [
         {
           "name": "200 : Find Pet Status",
